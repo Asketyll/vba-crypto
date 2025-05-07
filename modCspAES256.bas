@@ -60,7 +60,7 @@ Private Const ISO10126 = 5
 
 ' Encoding Constants
 Public Const Base64 = 0 ' Default
-Public Const Hex = 1
+Public Const HexAES = 1
 
 Private Sub TestEncryptAES()
 
@@ -187,7 +187,7 @@ Public Function EncryptStringAES(strText As String, strKey As String, strIV As S
     Select Case Encoding
         Case Base64
             strEncryptedIV = BytesToBase64(byteEncryptedIV)
-        Case Hex
+        Case HexAES
             strEncryptedIV = BytesToHex(byteEncryptedIV)
         Case Else
             Err.Raise vbObjectError + 516, "Encoding", "Invalid encoding type"
@@ -230,7 +230,7 @@ Public Function DecryptStringAES(strEncryptedIV As String, strKey As String, _
     Select Case Encoding
         Case Base64
             byteEncryptedIV = Base64toBytes(strEncryptedIV)
-        Case Hex
+        Case HexAES
             byteEncryptedIV = HextoBytes(strEncryptedIV)
         Case Else
             Err.Raise vbObjectError + 516, "Encoding", "ERROR: Invalid encoding type"
@@ -296,7 +296,7 @@ Public Function GetDecryptStringIV(strEncryptedIV As String, _
     Select Case Encoding
         Case Base64
             byteEncryptedIV = Base64toBytes(strEncryptedIV)
-        Case Hex
+        Case HexAES
             byteEncryptedIV = HextoBytes(strEncryptedIV)
         Case Else
             Err.Raise vbObjectError + 516, "Encoding", "ERROR: Invalid encoding type"
